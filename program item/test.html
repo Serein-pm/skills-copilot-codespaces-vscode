@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Happy Birthday❤</title>
+    <style>
+        /* 移动端重置样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* iframe容器适配 */
+        .iframe-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #birthdayFrame {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            background: transparent;
+        }
+
+        /* 隐藏滚动条（保留滚动功能） */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="iframe-container">
+        <iframe 
+            id="birthdayFrame"
+            src="./html/login.html"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <script>
+        // 自动调整iframe高度
+        function adjustFrame() {
+            const frame = document.getElementById('birthdayFrame');
+            function resize() {
+                frame.style.height = window.innerHeight + 'px';
+                frame.style.width = window.innerWidth + 'px';
+            }
+            window.addEventListener('resize', resize);
+            resize();
+        }
+        
+        // 移动端触摸事件处理
+        document.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+        }, { passive: false });
+
+        // 初始化
+        window.onload = adjustFrame;
+        window.addEventListener('orientationchange', adjustFrame);
+    </script>
+</body>
+
+</html>
